@@ -64,7 +64,7 @@ jobs:
       - name: "Build SCSS"
         run: yarn build:sass
       - name: "Build Docs"
-        run: yarn docs-build
+        run: yarn docs
       - uses: osiegmar/s3-publisher-action@v1
         with:
           bucket: vth-sdk-docs
