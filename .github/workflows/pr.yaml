@@ -30,65 +30,13 @@ env:
 
 jobs:
   #/////////////////////////////////////////////////////////////////////////////////////////////////////////
-  # FLAGS
+  # DEV
   # Flags used in other steps
-  #/////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  flags:
-    name: Set Flags
-    runs-on: ubuntu-latest
-    outputs:
-      head-commit-message: ${{ steps.set-outputs.outputs.headCommitMsg }}
-      version: ${{ steps.set-outputs.outputs.version }}
-      issue: ${{ steps.set-outputs.outputs.issue }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: '0'
-      - name: "Configure Environment (docker auth and aws auth)"
-        uses: ./.github/actions/configuration
-        id: configure
-        with:
-          jira-base-url: ${{ secrets.JIRA_BASE_URL }}
-          jira-user-email: ${{ secrets.JIRA_USER_EMAIL }}
-          jira-api-token: ${{ secrets.JIRA_API_TOKEN }}
-          use-sudo: true
-      - name: "Bump version and push tags"
-        uses: anothrNick/github-tag-action@1.67.0
-        id: tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-          WITH_V: false
-          DEFAULT_BUMP: patch
-          INITIAL_VERSION: 1.0.0
-          PRERELEASE: true
-          PRERELEASE_SUFFIX: beta
-          DRY_RUN: false
-      - name: Set Outputs
-        id: set-outputs
-        run: |
-          echo "headCommitMsg=$(git show -s --format=%s)" >> "$GITHUB_OUTPUT"
-          echo "version=${{ steps.tag.outputs.new_tag }}" >> "$GITHUB_OUTPUT"
-          echo "issue=${{ steps.configure.outputs.issue }}" >> "$GITHUB_OUTPUT"
-
-      - name: "Update Summary"
-        shell: bash
-        id: summary
-        run: |
-          echo "Package Version: ${{ steps.version.outputs.value }}" >> $GITHUB_STEP_SUMMARY
-          echo "Ticket: ${{ steps.configure.outputs.issue }}" >> $GITHUB_STEP_SUMMARY
-
-  #/////////////////////////////////////////////////////////////////////////////////////////////////////////
-  # BUILD SDK PROJECTS
-  # This will build and publish
   #/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   test:
     runs-on: ubuntu-latest
     name: "Test & Build SDK"
-    needs: [flags]
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
@@ -96,7 +44,6 @@ jobs:
   publish-demo-docs:
     runs-on: custom-ubuntu-20.04-4core
     name: "Test & Build SDK"
-    needs: [flags]
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
