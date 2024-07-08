@@ -67,7 +67,7 @@ jobs:
         run: yarn docs
       - uses: osiegmar/s3-publisher-action@v1
         with:
-          bucket: vth-sdk-docs
+          bucket: sdk.verathread.dev
           dir: ./_site
 #      - name: "Publish"
 #        if: env.DRY_RUN == 'false'
