@@ -35,7 +35,7 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-  publish-demo-docs:
+  publish-qa-docs:
     runs-on: custom-ubuntu-20.04-4core
     name: "Build & Publish QA Docs"
     steps:
@@ -75,3 +75,14 @@ jobs:
 #          cp ../../.npmrc .npmrc
 #          yarn version --no-commit-hooks --no-git-tag-version --new-version ${{ needs.flags.outputs.version }}
 #          yarn publish
+
+  release:
+    runs-on: ubuntu-latest
+    name: "Release"
+    needs:
+      - test
+      - publish-qa-docs
+    environment: production
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
