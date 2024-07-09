@@ -5,5 +5,5 @@ metadata:
   namespace: vth-sdk-docs
 spec:
   replacePathRegex:
-    regex: ^/${{ .Values.ticket }}/(.*)
+    regex: ^/{{ .Values.ticket }}/(.*)
     replacement: /$1
