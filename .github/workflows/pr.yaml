@@ -154,6 +154,11 @@ jobs:
           git config --global url."https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/".insteadOf "https://github.com/"
           git config --global user.email "ci@azarc.io"
           git config --global user.name "CI"
+      - name: "Change Issue Case"
+        id: issue
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ steps.configure.outputs.issue }}
       - name: "Create Release Tag"
         uses: anothrNick/github-tag-action@1.67.0
         id: tag
