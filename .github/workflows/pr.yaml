@@ -216,7 +216,7 @@ jobs:
           github-token: ${{ secrets.PAT_TOKEN }}
           number: ${{ github.event.pull_request.number }}
           method: squash
-          repo: azarc-io/verathread-gateway
+          repo: azarc-io/verathread-next-web-sdk
       - name: "Push Git Tag - After Squash"
         run: |
           git fetch origin
