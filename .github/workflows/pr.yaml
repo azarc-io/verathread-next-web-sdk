@@ -233,6 +233,20 @@ jobs:
           files: |
             bin/site.zip
             bin/package.zip
+
+#      - name: "Publish"
+#        if: env.DRY_RUN == 'false'
+#        run: |
+#          cp ../../.npmrc .npmrc
+#          yarn version --no-commit-hooks --no-git-tag-version --new-version ${{ needs.flags.outputs.version }}
+#          yarn publish
+
+  cleanup:
+    runs-on: ubuntu-latest
+    name: "Clean Up"
+    needs:
+      - release
+    steps:
       - name: "Clean Up FE Packages"
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
@@ -242,10 +256,3 @@ jobs:
           owner: azarc-io
           package: verathread-next-web-sdk/docs
           log-level: debug
-
-#      - name: "Publish"
-#        if: env.DRY_RUN == 'false'
-#        run: |
-#          cp ../../.npmrc .npmrc
-#          yarn version --no-commit-hooks --no-git-tag-version --new-version ${{ needs.flags.outputs.version }}
-#          yarn publish
