@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: vth-sdk-docs-strip-prefix
+  namespace: vth-sdk-docs
+spec:
+  replacePathRegex:
+    regex: ^/${{ .Values.ticket }}/(.*)
+    replacement: /$1
