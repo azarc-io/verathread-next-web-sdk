@@ -49,6 +49,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
           aws-region: ${{ env.AWS_REGION }}
+          jira-base-url: ${{ secrets.JIRA_BASE_URL }}
+          jira-user-email: ${{ secrets.JIRA_USER_EMAIL }}
+          jira-api-token: ${{ secrets.JIRA_API_TOKEN }}
           use-sudo: true
       - name: "Setup Node"
         uses: actions/setup-node@v4
@@ -59,22 +62,26 @@ jobs:
         env:
           FORCE_COLOR: 0
       - name: "Install"
-        if: env.DRY_RUN == 'false'
         run: yarn install --prefer-offline --frozen-lockfile --non-interactive
       - name: "Build SCSS"
         run: yarn build:sass
       - name: "Build Docs"
         run: yarn docs
-      - uses: osiegmar/s3-publisher-action@v1
+      - name: "Publish Docs"
+        uses: osiegmar/s3-publisher-action@v1
         with:
-          bucket: sdk.verathread.dev
+          bucket: sdk.verathread.dev/${{ steps.configure.outputs.issue }}
           dir: ./_site
-#      - name: "Publish"
-#        if: env.DRY_RUN == 'false'
-#        run: |
-#          cp ../../.npmrc .npmrc
-#          yarn version --no-commit-hooks --no-git-tag-version --new-version ${{ needs.flags.outputs.version }}
-#          yarn publish
+      - name: "Upload Artifacts"
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdk-site
+          path: _site
+      - name: "Upload Artifacts"
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdk-package
+          path: dist
 
   release:
     runs-on: ubuntu-latest
@@ -86,3 +93,9 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
+#      - name: "Publish"
+#        if: env.DRY_RUN == 'false'
+#        run: |
+#          cp ../../.npmrc .npmrc
+#          yarn version --no-commit-hooks --no-git-tag-version --new-version ${{ needs.flags.outputs.version }}
+#          yarn publish
