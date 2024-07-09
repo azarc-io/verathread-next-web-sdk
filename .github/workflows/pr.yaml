@@ -82,13 +82,7 @@ jobs:
       - name: "Build Docs"
         run: yarn docs
       - name: "Build Image"
-        run: docker build --push -t ghcr.io/azarc-io/verathread-next-web-sdk-docs:${{ steps.configure.outputs.issue }} -f site/deployment/Dockerfile .
-#      - name: "Publish Docs"
-#        uses: osiegmar/s3-publisher-action@v1
-#        with:
-#          bucket: sdk.verathread.dev
-#          prefix: ${{ steps.configure.outputs.issue }}/
-#          dir: ./_site
+        run: docker build --push -t ghcr.io/azarc-io/verathread-next-web-sdk/docs:${{ steps.configure.outputs.issue }} -f site/deployment/Dockerfile .
       - name: "Change Issue Case"
         id: issue
         uses: ASzc/change-string-case-action@v6
@@ -133,6 +127,68 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN }}
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: "Configure Environment"
+        uses: ./.github/actions/configuration
+        id: configure
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
+          aws-region: ${{ env.AWS_REGION }}
+          jira-base-url: ${{ secrets.JIRA_BASE_URL }}
+          jira-user-email: ${{ secrets.JIRA_USER_EMAIL }}
+          jira-api-token: ${{ secrets.JIRA_API_TOKEN }}
+          use-sudo: true
+      - name: "GHCR Login"
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.PAT_TOKEN }}
+      - name: "Fix Git"
+        run: |
+          git config --global url."https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/".insteadOf "https://github.com/"
+          git config --global user.email "ci@azarc.io"
+          git config --global user.name "CI"
+      - name: "Create Release Tag"
+        uses: anothrNick/github-tag-action@1.67.0
+        id: tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: minor
+          INITIAL_VERSION: 1.0.0
+          PRERELEASE: false
+          DRY_RUN: true
+      - name: "Update from Main Branch"
+        shell: bash
+        run: |
+          echo 'Ensure PR Branch is not behind main. This should never happen but "actions/checkout@v4" plugin does this by default.'
+          git merge origin/${{github.event.pull_request.base.ref}}
+      - name: "Docker Re-Tag"
+        run: |
+          docker pull ghcr.io/azarc-io/verathread-next-web-sdk/docs:${{ steps.configure.outputs.issue }}
+          docker tag ghcr.io/azarc-io/verathread-next-web-sdk/docs:${{ steps.configure.outputs.issue }} ghcr.io/azarc-io/verathread-next-web-sdk/docs:${{ steps.tag.outputs.tag }}
+          docker push ghcr.io/azarc-io/verathread-next-web-sdk/docs:${{ steps.tag.outputs.tag }}
+      - name: "Update Version Files"
+        shell: bash
+        run: |
+          yq --version
+          yq -i '.image.tag = "${{ steps.tag.outputs.tag }}"' 'deployment/chart/values.yaml'
+      - name: "Clean Up FE Packages"
+        uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          tags: ${{ steps.configure.outputs.issue }}
+          exclude-tags: 'v*,latest'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: azarc-io
+          package: verathread-next-web-sdk/docs
+          log-level: debug
+
 #      - name: "Publish"
 #        if: env.DRY_RUN == 'false'
 #        run: |

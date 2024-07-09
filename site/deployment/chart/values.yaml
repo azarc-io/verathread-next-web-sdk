@@ -7,7 +7,7 @@ replicaCount: 1
 ticket:
 
 image:
-  repository: ghcr.io/azarc-io/verathread-next-web-sdk-docs
+  repository: ghcr.io/azarc-io/verathread-next-web-sdk/docs
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
