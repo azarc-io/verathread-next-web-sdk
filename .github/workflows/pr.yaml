@@ -111,8 +111,8 @@ jobs:
             --namespace=vth-sdk-docs \
             --values=site/deployment/chart/values.yaml \
             --set image.tag=${{ steps.configure.outputs.issue }} \
-            --set ticket=${{ steps.issue.outputs.lowercase }} \
-            --set ingress.hosts[0].paths[0].path=/${{ steps.issue.outputs.lowercase }}
+            --set ingress.hosts[0].paths[0].path=/${{ steps.issue.outputs.lowercase }} \
+            --set ingress.hosts[0].host=/${{ steps.issue.outputs.lowercase }}.sdk.verathread.dev
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@v4
         with:
