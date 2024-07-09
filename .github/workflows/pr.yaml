@@ -70,7 +70,8 @@ jobs:
       - name: "Publish Docs"
         uses: osiegmar/s3-publisher-action@v1
         with:
-          bucket: sdk.verathread.dev/${{ steps.configure.outputs.issue }}
+          bucket: sdk.verathread.dev
+          prefix: ${{ steps.configure.outputs.issue }}
           dir: ./_site
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@v4
