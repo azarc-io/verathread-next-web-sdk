@@ -143,12 +143,20 @@ jobs:
           jira-user-email: ${{ secrets.JIRA_USER_EMAIL }}
           jira-api-token: ${{ secrets.JIRA_API_TOKEN }}
           use-sudo: true
+      - name: "Install Helm"
+        uses: azure/setup-helm@v4.2.0
+      - name: "Install Kubectl"
+        uses: azure/setup-kubectl@v4
       - name: "GHCR Login"
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.PAT_TOKEN }}
+      - name: "Set Kube Config"
+        run: |
+          mkdir -p ~/.kube && echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > ~/.kube/config
+          chmod go-r ~/.kube/config
       - name: "Fix Git"
         run: |
           git config --global url."https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/".insteadOf "https://github.com/"
