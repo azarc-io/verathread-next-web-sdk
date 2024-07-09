@@ -20,9 +20,9 @@ metadata:
     {{- include "web-sdk.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
-    {{ if not (.Values.ticket "") }}
+    {{- if .Values.ticket }}
     traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.ticket }}-strip-prefix@kubernetescrd"
-    {{ end }}
+    {{- end }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
