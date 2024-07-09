@@ -61,18 +61,27 @@ jobs:
           cache-dependency-path: 'yarn.lock'
         env:
           FORCE_COLOR: 0
+      - name: "GHCR Login"
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: "Install"
         run: yarn install --prefer-offline --frozen-lockfile --non-interactive
       - name: "Build SCSS"
         run: yarn build:sass
       - name: "Build Docs"
         run: yarn docs
-      - name: "Publish Docs"
-        uses: osiegmar/s3-publisher-action@v1
-        with:
-          bucket: sdk.verathread.dev
-          prefix: ${{ steps.configure.outputs.issue }}/
-          dir: ./_site
+
+      - name: "Build Image"
+        run: docker build --push -t ghcr.io/azarc-io/verathread-next-web-sdk-docs:${{ steps.configure.outputs.issue }}
+#      - name: "Publish Docs"
+#        uses: osiegmar/s3-publisher-action@v1
+#        with:
+#          bucket: sdk.verathread.dev
+#          prefix: ${{ steps.configure.outputs.issue }}/
+#          dir: ./_site
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@v4
         with:

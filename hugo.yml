@@ -1,6 +1,6 @@
 languageCode:           "en"
 title:                  "Bootstrap"
-baseURL:                "https://sdk.verathread.dev/RRP-7"
+baseURL:                "https://sdk.verathread.dev"
 
 security:
   enableInlineShortcodes: true
