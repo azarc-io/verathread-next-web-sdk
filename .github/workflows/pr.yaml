@@ -178,7 +178,48 @@ jobs:
         shell: bash
         run: |
           yq --version
-          yq -i '.image.tag = "${{ steps.tag.outputs.tag }}"' 'deployment/chart/values.yaml'
+          yq -i '.image.tag = "${{ steps.tag.outputs.tag }}"' 'site/deployment/chart/values.yaml'
+          yq -i '.ingress.hosts[0].host = "sdk.verathread.dev"' 'site/deployment/chart/values.yaml'
+      - name: "Deploy Chart"
+        run: |
+          helm upgrade ${{ steps.issue.outputs.lowercase }}-sdk site/deployment/chart \
+            --install --wait --atomic --create-namespace --timeout=2m \
+            --namespace=vth-sdk-docs \
+            --values=site/deployment/chart/values.yaml
+      - name: "Push Git Tag"
+        run: git tag ${{ steps.tag.outputs.tag }}-chart && git push origin tag ${{ steps.tag.outputs.tag }}-chart
+      - name: "Download Docs Artifact"
+        uses: actions/download-artifact@v4
+        with:
+          name: sdk-*
+      - name: "Generate Packages"
+        run: |
+          mkdir -p bin
+          zip -r bin/site.zip _site
+          zip -r bin/package.zip dist
+      - name: "Merge Pull Request"
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          number: ${{ github.event.pull_request.number }}
+          method: squash
+          repo: azarc-io/verathread-gateway
+      - name: "Push Git Tag - After Squash"
+        run: |
+          git fetch origin
+          git checkout origin/${{github.event.pull_request.base.ref}}
+          git tag ${{ steps.tag.outputs.tag }}
+          git push origin tag ${{ steps.tag.outputs.tag }}
+      - name: "Create Release"
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          generate_release_notes: true
+          repository: azarc-io/verathread-next-web-sdk
+          token: ${{ secrets.PAT_TOKEN }}
+          files: |
+            bin/site.zip
+            bin/package.zip
       - name: "Clean Up FE Packages"
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
