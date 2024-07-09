@@ -46,7 +46,7 @@ ingress:
   enabled: true
   className: ""
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: "vth-sdk-docs-strip-prefix@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: "vth-sdk-docs-strip-prefix@kubernetescrd"
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
