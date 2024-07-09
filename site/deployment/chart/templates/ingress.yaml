@@ -21,7 +21,7 @@ metadata:
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- if .Values.ticket }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.ticket }}-strip-prefix@kubernetescrd"
+    traefik.ingress.kubernetes.io/router.middlewares: "vth-sdk-docs-{{ .Values.ticket }}-strip-prefix@kubernetescrd"
     {{- end }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
