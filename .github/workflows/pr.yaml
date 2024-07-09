@@ -61,19 +61,26 @@ jobs:
           cache-dependency-path: 'yarn.lock'
         env:
           FORCE_COLOR: 0
+      - name: "Install Helm"
+        uses: azure/setup-helm@v4.2.0
+      - name: "Install Kubectl"
+        uses: azure/setup-kubectl@v4
       - name: "GHCR Login"
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Set Kube Config"
+        run: |
+          mkdir -p ~/.kube && echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > ~/.kube/config
+          chmod go-r ~/.kube/config
       - name: "Install"
         run: yarn install --prefer-offline --frozen-lockfile --non-interactive
       - name: "Build SCSS"
         run: yarn build:sass
       - name: "Build Docs"
         run: yarn docs
-
       - name: "Build Image"
         run: docker build --push -t ghcr.io/azarc-io/verathread-next-web-sdk-docs:${{ steps.configure.outputs.issue }} -f site/deployment/Dockerfile .
 #      - name: "Publish Docs"
@@ -82,6 +89,23 @@ jobs:
 #          bucket: sdk.verathread.dev
 #          prefix: ${{ steps.configure.outputs.issue }}/
 #          dir: ./_site
+      - name: "Create Docker Login Secret"
+        run: |
+          kubectl create namespace vth-sdk-docs --dry-run=client -o yaml | kubectl apply -f -
+          kubectl create secret docker-registry ghcr-login-secret \
+            --docker-server="https://ghcr.io" \
+            --docker-username="waeljammal" \
+            --docker-password="${{ secrets.GHCR_DOCKER_TOKEN }}" \
+            --docker-email="wael.jammal@azarc.io" \
+            --namespace=vth-sdk-docs \
+            --dry-run=client -o yaml | kubectl apply -f -
+      - name: "Deploy Chart"
+        run: |
+          helm upgrade ${{ steps.configure.outputs.issue }} site/deployment/chart \
+            --install --wait --atomic --create-namespace --timeout=2m \
+            --namespace=vth-sdk-docs \
+            --values=site/deployment/chart/values.yaml \
+            --set image.tag=${{ steps.configure.outputs.issue }}
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@v4
         with:
