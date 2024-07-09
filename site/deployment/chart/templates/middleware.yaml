@@ -1,3 +1,4 @@
+{{- if .Values.ticket }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
@@ -7,3 +8,4 @@ spec:
   replacePathRegex:
     regex: ^/{{ .Values.ticket }}/(.*)
     replacement: /$1
+  {{- end }}
