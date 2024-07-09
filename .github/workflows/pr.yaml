@@ -195,7 +195,7 @@ jobs:
           yq -i '.ingress.hosts[0].host = "sdk.verathread.dev"' 'site/deployment/chart/values.yaml'
       - name: "Deploy Chart"
         run: |
-          helm upgrade ${{ steps.issue.outputs.lowercase }}-sdk site/deployment/chart \
+          helm upgrade release-sdk site/deployment/chart \
             --install --wait --atomic --create-namespace --timeout=2m \
             --namespace=vth-sdk-docs \
             --values=site/deployment/chart/values.yaml
