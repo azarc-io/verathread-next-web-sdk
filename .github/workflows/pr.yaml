@@ -208,8 +208,8 @@ jobs:
       - name: "Generate Packages"
         run: |
           mkdir -p bin
-          zip -r sdk-site _site
-          zip -r sdk-package dist
+          zip -r bin/site.zip sdk-site
+          zip -r bin/package.zip sdk-package
       - name: "Merge Pull Request"
         uses: juliangruber/merge-pull-request-action@v1
         with:
