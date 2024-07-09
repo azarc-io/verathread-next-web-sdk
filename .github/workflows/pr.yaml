@@ -205,8 +205,6 @@ jobs:
         run: git tag ${{ steps.tag.outputs.tag }}-chart && git push origin tag ${{ steps.tag.outputs.tag }}-chart
       - name: "Download Docs Artifact"
         uses: actions/download-artifact@v4
-        with:
-          name: sdk-*
       - name: "Generate Packages"
         run: |
           mkdir -p bin
