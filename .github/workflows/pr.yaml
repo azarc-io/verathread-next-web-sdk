@@ -75,7 +75,7 @@ jobs:
         run: yarn docs
 
       - name: "Build Image"
-        run: docker build --push -t ghcr.io/azarc-io/verathread-next-web-sdk-docs:${{ steps.configure.outputs.issue }}
+        run: docker build --push -t ghcr.io/azarc-io/verathread-next-web-sdk-docs:${{ steps.configure.outputs.issue }} -f site/deployment/Dockerfile .
 #      - name: "Publish Docs"
 #        uses: osiegmar/s3-publisher-action@v1
 #        with:
