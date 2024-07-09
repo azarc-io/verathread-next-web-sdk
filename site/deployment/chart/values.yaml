@@ -26,7 +26,8 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  releaseTime: {{ dateInZone "2006-01-02 15:04:05Z" (now) "UTC"| quote }}
+  releaseTime: |
+    {{ dateInZone "2006-01-02 15:04:05Z" (now) "UTC"| quote }}
 
 podSecurityContext: {}
   # fsGroup: 2000
