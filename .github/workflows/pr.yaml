@@ -89,6 +89,11 @@ jobs:
 #          bucket: sdk.verathread.dev
 #          prefix: ${{ steps.configure.outputs.issue }}/
 #          dir: ./_site
+      - name: "Change Issue Case"
+        id: string
+        uses: Entepotenz/change-string-case-action@v1
+        with:
+          string: ${{ steps.configure.outputs.issue }}
       - name: "Create Docker Login Secret"
         run: |
           kubectl create namespace vth-sdk-docs --dry-run=client -o yaml | kubectl apply -f -
@@ -101,7 +106,7 @@ jobs:
             --dry-run=client -o yaml | kubectl apply -f -
       - name: "Deploy Chart"
         run: |
-          helm upgrade ${{ steps.configure.outputs.issue }} site/deployment/chart \
+          helm upgrade ${{ steps.string.outputs.lowercase }}-sdk site/deployment/chart \
             --install --wait --atomic --create-namespace --timeout=2m \
             --namespace=vth-sdk-docs \
             --values=site/deployment/chart/values.yaml \
