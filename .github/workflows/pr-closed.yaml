@@ -49,6 +49,37 @@ jobs:
         run: |
           mkdir -p ~/.kube && echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > ~/.kube/config
           chmod go-r ~/.kube/config
+      - name: "Cancel Running Workflows"
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const workflowIds = [
+              '.github/workflows/deploy_review.yaml',
+              '.github/workflows/packages.yaml',
+            ];
+
+            for (const workflowId of workflowIds) {
+              const workflowRuns = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: workflowId,
+                per_page: 100,
+                event: 'pull_request',
+                branch: context.payload.pull_request.head.ref,
+              });
+            
+              const activeRuns = workflowRuns.data.workflow_runs.filter((workflowRun) => {
+                return workflowRun.status === 'queued' || workflowRun.status === 'in_progress';
+              });
+            
+              for (const activeRun of activeRuns) {
+                await github.rest.actions.cancelWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: activeRun.id,
+                });
+              }
+            }
       - name: "Undeploy QA Chart"
         run: helm uninstall ${{ steps.issue.outputs.lowercase }}-sdk --namespace=vth-sdk-docs --ignore-not-found
       - name: "Clean Up Packages"
