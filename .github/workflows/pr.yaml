@@ -233,7 +233,15 @@ jobs:
           files: |
             bin/site.zip
             bin/package.zip
-
+      - name: "Clean Up FE Packages"
+        uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          tags: ${{ steps.configure.outputs.issue }}
+          exclude-tags: 'v*,latest'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: azarc-io
+          package: verathread-next-web-sdk/docs
+          log-level: debug
 #      - name: "Publish"
 #        if: env.DRY_RUN == 'false'
 #        run: |
@@ -247,6 +255,16 @@ jobs:
     needs:
       - release
     steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+      - name: "Configure Environment"
+        uses: ./.github/actions/configuration
+        id: configure
+        with:
+          jira-base-url: ${{ secrets.JIRA_BASE_URL }}
+          jira-user-email: ${{ secrets.JIRA_USER_EMAIL }}
+          jira-api-token: ${{ secrets.JIRA_API_TOKEN }}
+          use-sudo: true
       - name: "Clean Up FE Packages"
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
