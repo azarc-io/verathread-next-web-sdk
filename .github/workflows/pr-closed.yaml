@@ -19,7 +19,6 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     name: "Clean Up"
-    environment: production
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
@@ -41,10 +40,17 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.PAT_TOKEN }}
+      - name: "Change Issue Case"
+        id: issue
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ steps.configure.outputs.issue }}
       - name: "Set Kube Config"
         run: |
           mkdir -p ~/.kube && echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > ~/.kube/config
           chmod go-r ~/.kube/config
+      - name: "Undeploy QA Chart"
+        run: helm uninstall ${{ steps.issue.outputs.lowercase }}-sdk --namespace=vth-sdk-docs --ignore-not-found
       - name: "Clean Up Packages"
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
