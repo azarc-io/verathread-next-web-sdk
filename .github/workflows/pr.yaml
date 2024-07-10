@@ -116,6 +116,15 @@ jobs:
         with:
           name: sdk-package
           path: dist
+      - name: "Clean Up FE Packages"
+        uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          tags: ${{ steps.configure.outputs.issue }}
+          exclude-tags: 'v*,latest'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: azarc-io
+          package: verathread-next-web-sdk/docs
+          log-level: debug
 
   release:
     runs-on: ubuntu-latest
@@ -233,15 +242,6 @@ jobs:
           files: |
             bin/site.zip
             bin/package.zip
-      - name: "Clean Up FE Packages"
-        uses: dataaxiom/ghcr-cleanup-action@v1
-        with:
-          tags: ${{ steps.configure.outputs.issue }}
-          exclude-tags: 'v*,latest'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          owner: azarc-io
-          package: verathread-next-web-sdk/docs
-          log-level: debug
 #      - name: "Publish"
 #        if: env.DRY_RUN == 'false'
 #        run: |
