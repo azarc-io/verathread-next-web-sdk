@@ -5,7 +5,8 @@ description: Use our powerful mobile-first flexbox grid to build layouts of all 
 group: layout
 toc: true
 ---
-
+ 
+ 
 ## Example
 
 Bootstrap's grid system uses a series of containers, rows, and columns to layout and align content. It's built with [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) and is fully responsive. Below is an example and an in-depth explanation for how the grid system comes together.
