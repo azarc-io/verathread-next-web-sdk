@@ -14,6 +14,10 @@
 // Layout
 @import "./layout/layout";
 
+body {
+    box-sizing: border-box;
+}
+
 :root {
     --bs-white: #ffffff;
     --bs-primary: #0b3f5c;
