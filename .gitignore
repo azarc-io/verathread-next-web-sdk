@@ -45,3 +45,5 @@ Thumbs.db
 
 _site/
 .parcel-cache/
+resources
+resources/_gen/
