@@ -25,138 +25,106 @@ Here's an example of all the sub-components included in a responsive light-theme
 
 <!-- markdownlint-disable MD033 -->
 {{< example >}}
-  <nav class="bg-brand">
-    <div class="container-fluid d-flex  bd-gutter flex-wrap flex-lg-nowrap">
-      <div class="row me-auto bg-brand">
-        <div class="col-12 d-flex">
-          <div class="navbar-brand p-0 me-0 me-lg-2">
-            <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="brand logo" height="40"/>
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+  <!--begin::Page-->
+  <div class="page d-flex flex-row flex-column-fluid">
+    <!--begin::Wrapper-->
+    <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+      <!--begin::Header-->
+      <div class="header align-items-stretch">
+        <!--begin::Container-->
+        <div class="container-xxl d-flex align-items-center">
+          <!--begin::Header Logo-->
+          <div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
+            <img alt="Logo" src="/docs/5.3/assets/logos/logo.png" class="logo-default h-50px">
           </div>
-          <ul class="nav justify-content-center align-items-center">
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Apps</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">Settings</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    <div class="row">
-      <div class="col-12">
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <img src="/docs/5.3/assets/logos/icon_mode.png" alt="">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img src="/docs/5.3/assets/logos/icon_alert.png" alt="">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img src="/docs/5.3/assets/logos/icon_avatar.png" alt="">
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    </div>
-  </nav>
-  <main class="container ratio ratio-16x9 border border-black bg-secondary-subtle">
-    <div class="d-flex flex-column align-items-center justify-content-center p-4">
-      <h1>Content</h1>
-      <p>Content goes here.</p>
-    </div>
-< /main>
-{{< /example >}}
-<!-- markdownlint-enable MD033 -->
-
-This example uses the Verathread Brand background and [spacing]({{< docsref "/utilities/spacing" >}}) (`me-auto`, `mb-2`, `mb-lg-0`, `me-2`) utility classes.
-
-#### Examples
-
-## 01. Header with content scrollable
-
-<!-- markdownlint-disable MD033 -->
-{{< example >}}
-  <nav class="bg-brand">
-    <div class="container-fluid d-flex  bd-gutter flex-wrap flex-lg-nowrap">
-      <div class="row me-auto bg-brand">
-        <div class="col-12 d-flex">
-          <div class="navbar-brand p-0 me-0 me-lg-2">
-            <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="brand logo" height="40"/>
+          <!--end::Header Logo-->
+          <!--begin::Wrapper-->
+          <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+            <!--begin::Navbar-->
+            <div class="d-flex align-items-stretch" id="kt_header_nav">
+              <!--begin::Menu wrapper-->
+              <div class="header-menu align-items-stretch">
+                <!--begin::Menu-->
+                <div class="
+                  menu 
+                  menu-rounded 
+                  menu-column
+                  menu-lg-row 
+                  menu-active-bg
+                  menu-title-gray-700 
+                  menu-state-primary 
+                  menu-arrow-gray-500 
+                  fw-semibold 
+                  my-5 my-lg-0 
+                  align-items-stretch 
+                  px-2 px-lg-0" 
+                  id="#kt_header_menu" data-kt-menu="true">
+                  <!--begin:Menu item-->
+                  <div class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                    <!--begin:Menu link-->
+                    <span class="menu-link py-3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="menu-title">Apps</span>
+                      <span class="menu-arrow d-lg-none"></span>
+                    </span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="dropdown-menu menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0">
+                      <!--begin:Menu item-->
+                      <a class="menu-link py-3" href="#">
+                        <span class="menu-title">My App</span>
+                      </a>
+                      <!--end:Menu item-->
+                    </div>
+                    <!--end:Menu sub-->
+                  </div>
+                  <!--end:Menu item-->
+                </div>
+                <!--end::Menu-->
+              </div>
+              <!--end::Menu wrapper-->
+            </div>
+            <!--end::Navbar-->
+            <!--begin::Toolbar wrapper-->
+            <div class="topbar d-flex align-items-stretch flex-shrink-0">
+              <!--begin::Example-->
+              <div class="d-flex align-items-center ms-1 ms-lg-3">
+                <!--begin::Menu toggle-->
+                <div href="#" class="
+                  btn btn-icon btn-active-light-primary btn-custom 
+                  w-30px h-30px w-md-40px h-md-40px"
+                >
+                  <img class="h-30px w-30px rounded" src="/docs/5.3/assets/avatars/300-2.jpg" alt="" />
+                </div>
+                <!--begin::Menu toggle-->
+              </div>
+              <!--end::Example-->
+            </div>
+            <!--end::Toolbar wrapper-->
           </div>
-          <ul class="nav justify-content-center align-items-center">
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Apps</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">Settings</a>
-            </li>
-          </ul>
+          <!--end::Wrapper-->
         </div>
+        <!--end::Container-->
       </div>
-    <div class="row">
-      <div class="col-12">
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <img src="/docs/5.3/assets/logos/icon_mode.png" alt="">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img src="/docs/5.3/assets/logos/icon_alert.png" alt="">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img src="/docs/5.3/assets/logos/icon_avatar.png" alt="">
-            </a>
-          </li>
-        </ul>
+      <!--end::Header-->
+      <!--begin::Container-->
+      <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <!--begin::Post-->
+        <div class="content flex-row-fluid" id="content"> 
+          <div class="example-content">
+            <label>Content</label>
+          </div>
+        </div>
+        <!--begin::Post-->
       </div>
+      <!--end::Container-->
     </div>
-    </div>
-  </nav>
-<main class="container ratio ratio-16x9 border border-black bg-secondary-subtle overflow-x-scroll">
-  <div class="d-flex flex-column align-items-center justify-content-center p-40" style="height: 500px">
-    <h1>Content</h1>
-    <p>Content goes here.</p>
+    <!--end::Wrapper-->
   </div>
-</main>
-{{< /example >}}
-<!-- markdownlint-enable MD033 -->
-
-## 01. No Navbar in the header
-
-<!-- markdownlint-disable MD033 -->
-{{< example >}}
-<main class="container ratio ratio-16x9 border border-black bg-secondary-subtle">
-  <div class="d-flex flex-column align-items-center justify-content-center p-4 h-500">
-    <h1>Content</h1>
-    <p>Content goes here. - Scrollable</p>
-  </div>
-</main>
-{{< /example >}}
-<!-- markdownlint-enable MD033 -->
-
-### Brand
-
-The `.navbar-brand` can be applied to most elements, but an anchor works best, as some elements might require utility classes or custom styles.
-Add your text within an element with the `.navbar-brand` class.
-
-{{< example >}}
-<!-- As a link -->
-<!--markdownlint-disable MD033-->
-<nav class="navbar bg-body-tertiary">
-  <div class="container-fluid bg-brand">
-    <a class="navbar-brand" href="#"><img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread Logo" width="200" /></a>
-  </div>
-</nav>
+  <!--end::Page-->
+</div>
+<!--end::Root-->
 {{< /example >}}
 <!-- markdownlint-enable MD033 -->
 

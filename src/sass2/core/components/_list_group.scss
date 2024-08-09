@@ -1,0 +1,8 @@
+@include color-mode(dark) {
+  .list-group {
+    // scss-docs-start list-group-css-vars
+    //--#{$prefix}list-group-color: #{$list-group-color-dark} !important;
+    //--#{$prefix}list-group-action-hover-bg: #{$list-group-hover-bg-dark} !important;
+  }
+}
+

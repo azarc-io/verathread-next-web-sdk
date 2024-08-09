@@ -4,12 +4,13 @@
   "description": "Verathread Web SDK",
   "license": "MIT",
   "scripts": {
-    "build:sass": "parcel build src/scss/index.scss",
+    "build:sass": "parcel build src/sass2/index.scss",
+    "watch:sass": "parcel watch src/sass2/index.scss",
     "docs": "npm-run-all docs-build",
-    "docs-build": "hugo --cleanDestinationDir --printUnusedTemplates",
-    "docs-compile": "npm run docs-build",
-    "docs-serve": "hugo server --port 3000 --disableFastRender --noHTTPCache --renderToMemory --printPathWarnings --printUnusedTemplates",
-    "docs-serve-only": "npx sirv-cli _site --port 9001"
+    "docs:build": "hugo --cleanDestinationDir --printUnusedTemplates",
+    "docs:compile": "npm run docs-build",
+    "docs:serve": "hugo server --port 3000 --disableFastRender --noHTTPCache --renderToMemory --printPathWarnings --printUnusedTemplates",
+    "docs:serve-only": "npx sirv-cli _site --port 9001"
   },
   "devDependencies": {
     "@docsearch/js": "^3.6.0",

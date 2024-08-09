@@ -6,7 +6,7 @@ group: components
 toc: true
 ---
 
-## Examples
+## Basic Example
 
 Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight **required** contextual classes (e.g., `.alert-success`). For inline dismissal, use the [alerts JavaScript plugin](#dismissing).
 
@@ -17,9 +17,26 @@ Alerts are available for any length of text, as well as an optional close button
 {{< example >}}
 {{< alerts.inline >}}
 {{- range (index $.Site.Data "theme-colors") }}
-<div class="alert alert-{{ .name }}" role="alert">
-  A simple {{ .name }} alert—check it out!
-</div>{{- end -}}
+{{- if ne .name "dark"}}
+<!--begin::Alert-->
+<div class="alert alert-{{ .name }} d-flex align-items-center p-5">
+    <!--begin::Icon-->
+    <i class="fa-duotone fa-solid fa-shield-check fa-2x text-{{ .name }} me-4"></i>
+    <!--end::Icon-->
+    <!--begin::Wrapper-->
+    <div class="d-flex flex-column">
+        <!--begin::Title-->
+        <h4 class="mb-1 text-{{ .name }}">This is a {{ .name }} alert</h4>
+        <!--end::Title-->
+        <!--begin::Content-->
+        <span class="text-{{ .name }}">The alert component can be used to highlight certain parts of your page for higher content visibility.</span>
+        <!--end::Content-->
+    </div>
+    <!--end::Wrapper-->
+</div>
+<!--end::Alert-->
+{{end}}
+{{- end -}}
 {{< /alerts.inline >}}
 {{< /example >}}
 

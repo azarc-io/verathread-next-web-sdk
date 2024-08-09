@@ -16,114 +16,156 @@ Here's what you need to know before getting started with the Auth. pages:
 
 <!-- markdownlint-disable MD033 -->
 {{< example >}}
-<main class="landing ratio ratio-16x9 bg-brand-linear">
-  <div class="container d-flex align-items-center justify-content-center gap-10">
-    <div>
-     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
-     </div>
-    <div class="bg-light h-75 p-2 d-flex justify-content-center align-items-center rounded-2 w-40">
-      <h1>Auth Content</h1>
+<!--begin::Authentication -->
+<div class="d-flex flex-column flex-column-fluid flex-lg-row page-bg-brand">
+  <!--begin::Aside-->
+  <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
+    <!--begin::Aside-->
+    <div class="d-flex flex-center flex-lg-start flex-column">
+      <!--begin::Logo-->
+      <a href="#" class="mb-7">
+        <img src="/docs/5.3/assets/logos/logo.png" alt="Verathread" width="300" loading="lazy">
+      </a>
+      <!--end::Logo-->
     </div>
+    <!--begin::Aside-->
   </div>
-</main>
-
-{{< /example >}}
-<!-- markdownlint-enable MD033 -->
-
-## Login Page
-
-Provide context and instructions for the user to log in. .
-
-<!-- markdownlint-disable MD033 -->
-{{< example >}}
-  <main class="landing ratio ratio-16x9 bg-brand-linear">
-  <div class="container d-flex align-items-center justify-content-center gap-10">
-    <div class="d-flex justify-content-center align-items-center">
-     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
-     </div>
-    <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
-      <h3 class="d-flex align-items-center">
-      <img src="/docs/5.3/assets/logos/icon_login.png" width="30" alt="Application not found" loading="lazy" /> Login</h3>
-      <p>The content you are trying to access requires you to be logged in. Please click the button to continue.</p>
-      <div class="mt-auto">
-        <button type="button" class="btn btn-sm text-white bg-info">Login to continue</button>
+  <!--begin::Aside-->
+  <!--begin::Body-->
+  <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-lg-end p-5 p-lg-10">
+    <!--begin::Card-->
+    <div class="bg-body d-flex flex-column align-items-stretch rounded-4 w-md-400px p-10">
+      <!--begin::Wrapper-->
+      <div class="d-flex flex-column flex-column-fluid px-lg-10 pb-15 pb-lg-20">
+        <!--begin::Form-->
+        <form class="w-100 form" novalidate="novalidate" id="form" action="#">
+          <!--begin::Heading-->
+          <div class="mb-11">
+            <!--begin::Title-->
+            <h1 class="text-gray-900 fw-bolder mb-3">
+              <i class="fa-duotone fa-solid fa-right-to-bracket pe-1"></i>
+              Title
+            </h1>
+            <!--end::Title-->
+            <!--begin::Subtitle-->
+            <div class="text-gray-500 fw-semibold fs-6">
+              Some quick example text to build on the card title and make up the bulk of the card's content.
+            </div>
+            <!--end::Subtitle=-->
+          </div>
+          <!--begin::Heading-->
+          <!--begin::Submit button-->
+          <div class="d-grid mb-10">
+            <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+              <!--begin::Indicator label-->
+              <span class="indicator-label">Action</span>
+              <!--end::Indicator label-->
+              <!--begin::Indicator progress-->
+              <span class="indicator-progress">Please wait... 
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+              <!--end::Indicator progress-->
+            </button>
+          </div>
+          <!--end::Submit button-->
+        </form>
+        <!--end::Form-->
       </div>
+      <!--end::Wrapper-->
+      <!--begin::Footer-->
+      <div class="d-flex flex-stack px-lg-10">
+        <!--begin::Links-->
+        <div class="d-flex fw-semibold text-primary fs-base gap-5">
+          <a href="#" target="_blank">Terms</a>
+          <a href="#" target="_blank">Contact Us</a>
+        </div>
+        <!--end::Links-->
+      </div>
+      <!--end::Footer-->
     </div>
+    <!--end::Card-->
   </div>
-</main>
+  <!--end::Body-->
+</div>
+<!--begin::Authentication -->
 {{< /example >}}
 <!-- markdownlint-enable MD033 -->
 
-## Logged out Page
-
-Provide context and instructions for the user to log out.
-
-<!-- markdownlint-disable MD033 -->
-{{< example >}}
-    <main class="landing ratio ratio-16x9 bg-brand-linear">
-      <div class="container d-flex align-items-center justify-content-center gap-10">
-        <div>
-        <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
-        </div>
-        <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
-          <h3>Logged out</h3>
-          <p>You have been logged out, you can clcik the button below to login again.</p>
-          <div class="mt-auto">
-            <button type="button" class="btn btn-sm text-white bg-info">Login</button>
-          </div>
-        </div>
-      </div>
-    </main>
-{{< /example >}}
-<!-- markdownlint-enable MD033 -->
-
-
-## Please wait Page
-
-Provide context and instructions for the user to wait for the page to load.
-
-<!-- markdownlint-disable MD033 -->
-{{< example >}}
-  <main class="landing ratio ratio-16x9 bg-brand-linear">
-      <div class="container d-flex align-items-center justify-content-center gap-10">
-        <div>
-          <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
-        </div>
-      <div class="bg-light h-75 p-7 d-flex flex-column rounded-2  w-40">
-           <div class="d-flex align-items-center justify-content-center mt-4">
-            <img src="/docs/5.3/assets/img/examples/img_example-progress.png" alt="progress example" width="130" />
-           </div>
-          <div class="mt-auto">
-            <h2>Please wait</h2>
-            <p>You will be logged out and it requires you to login again when you access Verathread.</p>
-          </div>
-        </div>
-      </div>
-    </main>
-{{< /example >}}
-<!-- markdownlint-enable MD033 -->
-
-## Error pages for Auth.
+## Error example
 
 If there is an error this will provide feedback on the error.
 
 <!-- markdownlint-disable MD033 -->
 {{< example >}}
-  <main class="landing ratio ratio-16x9 bg-brand-linear">
-      <div class="container d-flex align-items-center justify-content-center gap-10">
-        <div>
-          <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
-        </div>
-      <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
-          <div class="d-flex align-items-center justify-content-center pt-3">
-            <img src="/docs/5.3/assets/logos/icon_login-error.png" width="130" alt="Application not found" loading="lazy" />
+<!--begin::Authentication -->
+<div class="d-flex flex-column flex-column-fluid flex-lg-row page-bg-brand">
+  <!--begin::Aside-->
+  <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
+    <!--begin::Aside-->
+    <div class="d-flex flex-center flex-lg-start flex-column">
+      <!--begin::Logo-->
+      <a href="#" class="mb-7">
+        <img src="/docs/5.3/assets/logos/logo.png" alt="Verathread" width="300" loading="lazy">
+      </a>
+      <!--end::Logo-->
+    </div>
+    <!--begin::Aside-->
+  </div>
+  <!--begin::Aside-->
+  <!--begin::Body-->
+  <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-lg-end p-5 p-lg-10">
+    <!--begin::Card-->
+    <div class="bg-body d-flex flex-column align-items-stretch rounded-4 w-md-400px p-10">
+      <!--begin::Wrapper-->
+      <div class="d-flex flex-column flex-column-fluid px-lg-10 pb-15 pb-lg-20">
+        <!--begin::Form-->
+        <form class="w-100 form" novalidate="novalidate" id="form" action="#">
+          <!--begin::Heading-->
+          <div class="mb-11">
+            <!--begin::Title-->
+            <div class="text-gray-900 d-flex justify-content-center pb-5">
+              <i class="fa-duotone fa-solid fa-bug fa-9x text-danger"></i>
+            </div>
+            <!--end::Title-->
+            <!--begin::Subtitle-->
+            <div class="text-danger fw-semibold fs-6 text-center">
+              Some quick example text to explain the error and what the user can do next.
+            </div>
+            <!--end::Subtitle=-->
           </div>
-          <div class="mt-auto">
-            <h4><strong>It doesn't look like you have any apps installed.</strong></h4>
-            <p>Start by adding apps to your installation.</p>
+          <!--begin::Heading-->
+          <!--begin::Submit button-->
+          <div class="d-grid mb-10">
+            <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+              <!--begin::Indicator label-->
+              <span class="indicator-label">Action</span>
+              <!--end::Indicator label-->
+              <!--begin::Indicator progress-->
+              <span class="indicator-progress">Please wait... 
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+              </span>
+              <!--end::Indicator progress-->
+            </button>
           </div>
-        </div>
+          <!--end::Submit button-->
+        </form>
+        <!--end::Form-->
       </div>
-  </main>
+      <!--end::Wrapper-->
+      <!--begin::Footer-->
+      <div class="d-flex flex-stack px-lg-10">
+        <!--begin::Links-->
+        <div class="d-flex fw-semibold text-primary fs-base gap-5">
+          <a href="#" target="_blank">Terms</a>
+          <a href="#" target="_blank">Contact Us</a>
+        </div>
+        <!--end::Links-->
+      </div>
+      <!--end::Footer-->
+    </div>
+    <!--end::Card-->
+  </div>
+  <!--end::Body-->
+</div>
+<!--begin::Authentication -->
 {{< /example >}}
 <!-- markdownlint-enable MD033 -->

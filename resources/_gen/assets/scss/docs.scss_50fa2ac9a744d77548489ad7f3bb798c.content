@@ -474,28 +474,28 @@
 
 :root,
 [data-bs-theme="light"] {
-  --bd-purple: #4c0bce;
-  --bd-violet: #712cf9;
-  --bd-accent: #ffe484;
-  --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-  --bd-accent-rgb: 255, 228, 132;
+  --bd-purple: #0F9AE8;
+  --bd-violet: #4bbaf8;
+  --bd-accent: #76C9F6;
+  --bd-violet-rgb: 75.163411, 186.090009, 248.336589;
+  --bd-accent-rgb: 118, 201, 246;
   --bd-pink-rgb: 214, 51, 132;
   --bd-teal-rgb: 32, 201, 151;
-  --bd-violet-bg: var(--bd-violet);
-  --bd-toc-color: var(--bd-violet);
-  --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
+  --bd-violet-bg: #4bbaf8;
+  --bd-toc-color: #4bbaf8;
+  --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .5);
   --bd-callout-link: 10, 88, 202;
-  --bd-callout-code-color: #ab296a;
+  --bd-callout-code-color: #000;
   --bd-pre-bg: var(--bs-tertiary-bg);
 }
 
 [data-bs-theme="dark"] {
-  --bd-violet: #9461fb;
-  --bd-violet-bg: #712cf9;
+  --bd-violet: #78cbfa;
+  --bd-violet-bg: #4bbaf8;
   --bd-toc-color: var(--bs-emphasis-color);
-  --bd-sidebar-link-bg: rgba(84, 33, 187, .5);
+  --bd-sidebar-link-bg: rgba(56, 140, 186, .5);
   --bd-callout-link: 110, 168, 254;
-  --bd-callout-code-color: #e685b5;
+  --bd-callout-code-color: #050505;
   --bd-pre-bg: #1b1f22;
 }
 
@@ -899,14 +899,8 @@
 }
 
 .bd-lead {
-  font-size: calc(1.275rem + 0.3vw);
+  font-size: 1.2rem;
   font-weight: 300;
-}
-
-@media (min-width: 1200px) {
-  .bd-lead {
-    font-size: 1.5rem;
-  }
 }
 
 .bi {
@@ -955,7 +949,7 @@
 }
 
 .skippy {
-  background-color: #4c0bce;
+  background-color: #0F9AE8;
 }
 
 .skippy a {
@@ -1561,7 +1555,7 @@
 }
 
 .highlight pre code {
-  font-size: inherit;
+  font-size: 0.8rem;
   color: var(--bs-body-color);
   word-wrap: normal;
 }
@@ -1590,6 +1584,15 @@
   margin-bottom: 1rem;
 }
 
+.example-content {
+  border: var(--bs-border-color) solid 1px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
 /** @format */
 .btn-bd-primary {
   --bs-btn-font-weight: 600;
@@ -1597,12 +1600,12 @@
   --bs-btn-bg: var(--bd-violet-bg);
   --bs-btn-border-color: var(--bd-violet-bg);
   --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #6528e0;
-  --bs-btn-hover-border-color: #6528e0;
+  --bs-btn-hover-bg: #44a7e0;
+  --bs-btn-hover-border-color: #44a7e0;
   --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
   --bs-btn-active-color: var(--bs-btn-hover-color);
-  --bs-btn-active-bg: #5a23c8;
-  --bs-btn-active-border-color: #5a23c8;
+  --bs-btn-active-bg: #3c95c7;
+  --bs-btn-active-border-color: #3c95c7;
 }
 
 .btn-bd-accent {
@@ -1619,7 +1622,7 @@
 }
 
 .btn-bd-light {
-  --btn-custom-color: #9461fb;
+  --btn-custom-color: #78cbfa;
   --bs-btn-color: var(--bs-gray-600);
   --bs-btn-border-color: var(--bs-border-color);
   --bs-btn-hover-color: var(--btn-custom-color);
@@ -1682,12 +1685,12 @@
 }
 
 .bd-brand-logos {
-  color: #712cf9;
+  color: #4bbaf8;
 }
 
 .bd-brand-logos .inverse {
   color: #fff;
-  background-color: #712cf9;
+  background-color: #4bbaf8;
 }
 
 .bd-brand-item + .bd-brand-item {
@@ -1706,11 +1709,11 @@
 }
 
 .color-swatches .bd-purple {
-  background-color: #4c0bce;
+  background-color: #0F9AE8;
 }
 
 .color-swatches .bd-purple-light {
-  background-color: #d5c1fd;
+  background-color: #dff3fe;
 }
 
 .color-swatches .bd-purple-lighter {

@@ -7,7 +7,7 @@
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="{{ .Site.Params.docs_version }}">
 
-<base href="RRP-7">
+<base href="">
 
 <link rel="canonical" href="{{ .Permalink }}">
 
@@ -24,7 +24,14 @@
 {{- $colorModeJS := urls.JoinPath "/docs" $.Site.Params.docs_version "assets/js/color-modes.js" -}}
 <script src="{{ $colorModeJS }}"></script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit&family=Roboto:wght@100&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/c208f0a4dd.js" crossorigin="anonymous"></script>
+
+<!-- Style Sheets -->
 {{ partial "stylesheet" . }}
+
 {{ partial "favicons" . }}
 {{ partial "social" . }}
 {{ partial "analytics" . }}

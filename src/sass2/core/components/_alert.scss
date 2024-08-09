@@ -1,0 +1,59 @@
+//
+// Alert
+//
+
+@each $name, $value in $theme-colors {
+	.alert-#{$name} {
+		color: var(--#{$prefix}#{$name});
+		border-color: var(--#{$prefix}#{$name});
+		background-color: var(--#{$prefix}#{$name}-light);
+
+		.alert-link {
+    		color: var(--#{$prefix}#{$name});
+  		}
+	}
+}
+
+//.alert-light {
+//  h1, h2, h3, h4, h5, h6, p {
+//    color: var(--#{$prefix}light-inverse);
+//  }
+//
+//  i {
+//    color: $light
+//  }
+//}
+//
+//.alert-success {
+//  h1, h2, h3, h4, h5, h6, p {
+//    color: var(--#{$prefix}light-inverse);
+//  }
+//
+//  i {
+//    color: $light
+//  }
+//}
+//
+//.alert-warning {
+//  h1, h2, h3, h4, h5, h6, p {
+//    color: var(--#{$prefix}light-inverse);
+//  }
+//
+//  i {
+//    color: $light
+//  }
+//}
+
+//.alert-dark {
+//  h1, h2, h3, h4, h5, h6, p {
+//    color: var(--#{$prefix}light-inverse);
+//  }
+//
+//  span {
+//    color: $dark-dark
+//  }
+//
+//  i {
+//    color: $dark-dark
+//  }
+//}

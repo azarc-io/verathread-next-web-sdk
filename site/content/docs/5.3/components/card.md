@@ -91,7 +91,7 @@ Create lists of content in a card with a flush list group.
 {{< example >}}
 <div class="card" style="width: 18rem;">
   <div class="card-header">
-    Featured
+    <h3 class="card-title">Featured</h3>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">An item</li>
@@ -144,21 +144,8 @@ Add an optional header and/or footer within a card.
 {{< example >}}
 <div class="card">
   <div class="card-header">
-    Featured
+    <h3 class="card-title">Featured</h3>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-{{< /example >}}
-
-Card headers can be styled by adding `.card-header` to `<h*>` elements.
-
-{{< example >}}
-<div class="card">
-  <h5 class="card-header">Featured</h5>
   <div class="card-body">
     <h5 class="card-title">Special title treatment</h5>
     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -170,7 +157,7 @@ Card headers can be styled by adding `.card-header` to `<h*>` elements.
 {{< example >}}
 <div class="card">
   <div class="card-header">
-    Quote
+    <h3 class="card-title">Quote</h3>
   </div>
   <div class="card-body">
     <blockquote class="blockquote mb-0">
@@ -184,7 +171,7 @@ Card headers can be styled by adding `.card-header` to `<h*>` elements.
 {{< example >}}
 <div class="card text-center">
   <div class="card-header">
-    Featured
+    <h3 class="card-title">Featured</h3>
   </div>
   <div class="card-body">
     <h5 class="card-title">Special title treatment</h5>
@@ -301,40 +288,19 @@ Add some navigation to a card's header (or block) with Bootstrap's [nav componen
 {{< example >}}
 <div class="card text-center">
   <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="true" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-{{< /example >}}
-
-{{< example >}}
-<div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
+    <div class="card-toolbar">
+      <ul class="nav" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4 me-1 active" data-bs-toggle="tab" href="#kt_table_widget_7_tab_1" aria-selected="true" role="tab">Month</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4 me-1" data-bs-toggle="tab" href="#kt_table_widget_7_tab_2" aria-selected="false" role="tab" tabindex="-1">Week</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4" data-bs-toggle="tab" href="#kt_table_widget_7_tab_3" aria-selected="false" role="tab" tabindex="-1">Day</a>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="card-body">
     <h5 class="card-title">Special title treatment</h5>
@@ -425,7 +391,9 @@ Set a `background-color` with contrasting foreground `color` with [our `.text-bg
 {{< card.inline >}}
 {{- range (index $.Site.Data "theme-colors") }}
 <div class="card text-bg-{{ .name }} mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
+  <div class="card-header">
+    <h3 class="card-title">Header</h3>
+  </div>
   <div class="card-body">
     <h5 class="card-title">{{ .name | title }} card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -447,7 +415,9 @@ Use [border utilities]({{< docsref "/utilities/borders" >}}) to change just the 
 {{< card.inline >}}
 {{- range (index $.Site.Data "theme-colors") }}
 <div class="card border-{{ .name }} mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
+  <div class="card-header">
+    <h3 class="card-title">Header</h3>
+  </div>
   <div class="card-body{{ if not .contrast_color }} text-{{ .name }}{{ end }}">
     <h5 class="card-title">{{ .name | title }} card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -463,7 +433,9 @@ You can also change the borders on the card header and footer as needed, and eve
 
 {{< example >}}
 <div class="card border-success mb-3" style="max-width: 18rem;">
-  <div class="card-header bg-transparent border-success">Header</div>
+  <div class="card-header bg-transparent border-success">
+    <h3 class="card-title">Header</h3>
+  </div>
   <div class="card-body text-success">
     <h5 class="card-title">Success card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

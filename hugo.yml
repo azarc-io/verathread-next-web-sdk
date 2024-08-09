@@ -37,6 +37,8 @@ module:
       target:           static/docs/5.3/dist
     - source:           site/assets
       target:           assets
+    - source:           src/assets/media/patterns
+      target:           assets/patterns
     - source:           site/content
       target:           content
     - source:           site/data
@@ -61,8 +63,8 @@ params:
   current_ruby_version: "5.3.3"
   docs_version:         "5.3"
   rfs_version:          "v0.1.0"
-  github_org:           "https://github.com/twbs"
-  repo:                 "https://github.com/twbs/bootstrap"
+  github_org:           "https://github.com/azarc-io/verathread-next-web-sdk"
+  repo:                 "https://github.com/azarc-io/verathread-next-web-sdk"
 
   analytics:
     fathom_site:        "ITUSEYJG"

@@ -7,28 +7,28 @@
  */
 :root,
 [data-bs-theme="light"] {
-  --bd-purple: #4c0bce;
-  --bd-violet: #712cf9;
-  --bd-accent: #ffe484;
-  --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-  --bd-accent-rgb: 255, 228, 132;
+  --bd-purple: #0F9AE8;
+  --bd-violet: #4bbaf8;
+  --bd-accent: #76C9F6;
+  --bd-violet-rgb: 75.163411, 186.090009, 248.336589;
+  --bd-accent-rgb: 118, 201, 246;
   --bd-pink-rgb: 214, 51, 132;
   --bd-teal-rgb: 32, 201, 151;
-  --bd-violet-bg: var(--bd-violet);
-  --bd-toc-color: var(--bd-violet);
-  --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
+  --bd-violet-bg: #4bbaf8;
+  --bd-toc-color: #4bbaf8;
+  --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .5);
   --bd-callout-link: 10, 88, 202;
-  --bd-callout-code-color: #ab296a;
+  --bd-callout-code-color: #000;
   --bd-pre-bg: var(--bs-tertiary-bg);
 }
 
 [data-bs-theme="dark"] {
-  --bd-violet: #9461fb;
-  --bd-violet-bg: #712cf9;
+  --bd-violet: #78cbfa;
+  --bd-violet-bg: #4bbaf8;
   --bd-toc-color: var(--bs-emphasis-color);
-  --bd-sidebar-link-bg: rgba(84, 33, 187, .5);
+  --bd-sidebar-link-bg: rgba(56, 140, 186, .5);
   --bd-callout-link: 110, 168, 254;
-  --bd-callout-code-color: #e685b5;
+  --bd-callout-code-color: #050505;
   --bd-pre-bg: #1b1f22;
 }
 
@@ -824,7 +824,7 @@ svg.DocSearch-Hit-Select-Icon {
   --docsearch-searchbox-background: rgba(0, 0, 0, 0.1);
   --docsearch-searchbox-color: #fff;
   --docsearch-searchbox-focus-background: rgba(0, 0, 0, 0.25);
-  --docsearch-searchbox-shadow: 0 0 0 0.25rem rgba(255, 228, 132, 0.4);
+  --docsearch-searchbox-shadow: 0 0 0 0.25rem rgba(118, 201, 246, 0.4);
   --docsearch-text-color: #fff;
   --docsearch-muted-color: rgba(255, 255, 255, 0.65);
   width: 100%;
@@ -839,7 +839,7 @@ svg.DocSearch-Hit-Select-Icon {
 }
 
 .DocSearch-Button:active, .DocSearch-Button:focus, .DocSearch-Button:hover {
-  border-color: #ffe484;
+  border-color: #76c9f6;
 }
 
 .DocSearch-Button:active .DocSearch-Search-Icon, .DocSearch-Button:focus .DocSearch-Search-Icon, .DocSearch-Button:hover .DocSearch-Search-Icon {

@@ -374,7 +374,7 @@
     }
 
     pre code {
-        @include font-size(inherit);
+        font-size: 0.8rem;
         color: var(--bs-body-color); // Effectively the base text color
         word-wrap: normal;
     }
@@ -402,4 +402,13 @@
 
 .bd-content .bd-code-snippet {
     margin-bottom: 1rem;
+}
+
+.example-content {
+  border: var(--bs-border-color) solid 1px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
